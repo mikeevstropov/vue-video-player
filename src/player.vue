@@ -113,6 +113,8 @@
           // player readied
           self.$emit('ready', self.player);
 
+          var self = this
+
           // events
           ['loadeddata', 
            'canplay', 
@@ -120,11 +122,11 @@
            'play', 
            'pause', 
            'waiting', 
-           'playing', 
-           'ended'].forEach(event => {
-            this.on(event, function() {
-              emitPlayerState(event, true)
-            })
+           'playing',
+              'ended'].forEach(function (event) {
+              self.on(event, function () {
+                  emitPlayerState(event, true)
+              })
           });
 
           this.on('timeupdate', function() {

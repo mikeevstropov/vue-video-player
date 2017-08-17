@@ -95,6 +95,8 @@ var videoPlayer = {
             // player ready
             emitPlayerState('ready');
 
+            var self = this
+
             ['loadeddata', 
              'canplay', 
              'canplaythrough', 
@@ -102,10 +104,10 @@ var videoPlayer = {
              'pause', 
              'waiting', 
              'playing', 
-             'ended'].forEach(event => {
-              this.on(event, function() {
-                emitPlayerState(event, true)
-              })
+             'ended'].forEach(function (event) {
+                self.on(event, function () {
+                    emitPlayerState(event, true)
+                })
             });
 
             this.on('timeupdate', function() {
